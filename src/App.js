@@ -17,8 +17,8 @@ import './App.css';
 
 */
 
-const data = [
-  { first_name: 'bilbo', last_name: 'baggins', age: 111 },
+let data = [
+  { first_name: 'bilbo', last_name: 'baggins', age: 45 },
   { first_name: 'frodo', last_name: 'baggins', age: 34 },
   { first_name: 'samwise', last_name: 'gamgee', age: 55 },
   { first_name: 'mary', last_name: 'smith', age: 92 },
@@ -33,19 +33,34 @@ const data = [
   { first_name: 'bill', last_name: 'higgons', age: 56 }
 ];
 
+data = data.sort( (a,b) => a.age > b.age ? 1 : a.age < b.age ? -1 : 0 );
+
+
 const columnHeadings = ['Name', 'Age'];
+
 
 function App() {
   return (
     <div className="App">
       <div className="row header">
-        {columnHeadings &&
-          columnHeadings.map(heading => (
-            <div className="column">{heading}</div>
-          ))}
+        { columnHeadings.map(heading => (
+            <div className="column">
+              {heading}
+            </div>
+            )
+        )}
       </div>
+      {
+        data.map( rowobj => (
+          <div className="row">
+            <div className="column">{rowobj.first_name + ' ' + rowobj.last_name}</div>
+            <div className="column">{rowobj.age}</div>
+          </div>
+        ))
+      }
     </div>
   );
 }
+
 
 export default App;
